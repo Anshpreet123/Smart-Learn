@@ -184,5 +184,6 @@ node_modules
 psd
 thumb
 sketch
+./src/config/.env
 
 # End of https://www.toptal.com/developers/gitignore/api/node,expressionengine,monodevelop,reacts
