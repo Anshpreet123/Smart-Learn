@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import Button from '../button/Button';
+import { Link } from 'react-router-dom';
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
 
@@ -31,8 +32,12 @@ const Navbar = () => {
 
         {/* Right Side Buttons */}
         <div className="hidden md:flex space-x-4">
-          <Button>Sign In</Button>
-          <Button>Sign Up</Button>
+          <Link to="/auth" className="text-orange-700 hover:text-orange-900">
+            <Button name={'Sign Up'} />
+          </Link>
+          <Link to="/auth" className="text-orange-700 hover:text-orange-900">
+            <Button name={'Sign In'} />
+          </Link>
         </div>
       </div>
 

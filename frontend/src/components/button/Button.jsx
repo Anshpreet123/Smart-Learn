@@ -1,12 +1,12 @@
 import React from 'react';
 
-const Button = ({ children, onClick }) => {
+const Button = (props) => {
   return (
     <button
-      onClick={onClick}
+      onClick={props.onClick}
       className="bg-orange-500 hover:bg-orange-600 text-white font-semibold px-4 py-2 rounded-lg transition"
     >
-      {children}
+      {props.name}
     </button>
   );
 };

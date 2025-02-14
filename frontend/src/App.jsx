@@ -12,6 +12,8 @@ import Footer from './components/footer/Footer';
 import Home from './pages/home/Home';
 import SideBar from './components/sideBar/SideBar';
 import Course from './pages/course/Course';
+import VideoPage from './components/videoPage/VideoPage';
+import AuthPage from './pages/auth/AuthPage';
 
 function App() {
   return (
@@ -19,8 +21,10 @@ function App() {
       <Navbar />
       <Routes>
         <Route path="/" element={<Home />} />
+        <Route path="/auth" element={<AuthPage />} />
         <Route path="/side" element={<SideBar />} />
         <Route path="/course" element={<Course />} />
+        {/* <Route path="/comment" element={<VideoPage />} /> */}
       </Routes>
       <Footer />
     </BrowserRouter>
