@@ -106,6 +106,34 @@ const getUserProfile = async (req, res) => {
     console.log('Error fetching user profile');
   }
 };
+const updateProfile = async (req, res) => {
+  try {
+    const { id } = req.user;
+    console.log('id', id);
+    const updateData = req.body;
+
+    // Validate input (optional, but recommended)
+    if (!updateData || Object.keys(updateData).length === 0) {
+      return res.status(400).json({ message: 'No update data provided' });
+    }
+
+    // Find and update user
+    const updatedUser = await User.findByIdAndUpdate(id, updateData, {
+      new: true, // Return updated document
+      runValidators: true, // Ensure updates respect schema validation
+    });
+
+    if (!updatedUser) {
+      return res.status(404).json({ message: 'User not found' });
+    }
+
+    res.status(200).json(updatedUser);
+    console.log('User profile updated successfully');
+  } catch (error) {
+    console.error('Error updating user profile:', error);
+    res.status(500).json({ message: 'Internal Server Error' });
+  }
+};
 
 module.exports = {
   registerUser,
@@ -113,4 +141,5 @@ module.exports = {
   refreshAccessToken,
   logoutUser,
   getUserProfile,
+  updateProfile,
 };

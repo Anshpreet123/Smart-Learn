@@ -14,6 +14,8 @@ import SideBar from './components/sideBar/SideBar';
 import Course from './pages/course/Course';
 import VideoPage from './components/videoPage/VideoPage';
 import AuthPage from './pages/auth/AuthPage';
+import Dashboard from './pages/dashboard/Dashboard';
+import Profile from './pages/profile/Profile';
 
 function App() {
   return (
@@ -24,6 +26,8 @@ function App() {
         <Route path="/auth" element={<AuthPage />} />
         <Route path="/side" element={<SideBar />} />
         <Route path="/course" element={<Course />} />
+        <Route path="/dashboard" element={<Dashboard />} />
+        <Route path="/profile" element={<Profile />} />
         {/* <Route path="/comment" element={<VideoPage />} /> */}
       </Routes>
       <Footer />

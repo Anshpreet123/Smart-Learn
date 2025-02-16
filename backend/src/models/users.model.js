@@ -3,12 +3,24 @@ const bcrypt = require('bcryptjs');
 
 const UserSchema = new mongoose.Schema(
   {
-    firstName: String,
-    lastName: String,
+    firstName: { type: String, required: true },
+    lastName: { type: String, required: true },
     email: { type: String, unique: true, required: true },
     password: { type: String, required: true },
     userType: { type: String, enum: ['student', 'teacher', 'admin'], required: true },
     refreshToken: { type: String }, // Store refresh token in DB for security
+    age: { type: Number },
+    phone: { type: String },
+    location: { type: String },
+    image: { type: String },
+    bio: { type: String },
+    coursesPurchased: [
+      {
+        name: { type: String },
+        category: { type: String },
+      },
+    ],
+    interests: [{ type: String }],
   },
   { timestamps: true },
 );

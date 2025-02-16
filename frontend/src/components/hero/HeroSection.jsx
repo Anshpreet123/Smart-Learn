@@ -11,7 +11,7 @@ const HeroSection = () => {
         <p className="text-lg md:text-xl text-orange-700 mt-4 mb-6">
           Learn from industry experts and grow your skills.
         </p>
-        <Button className="mt-16">Browse Courses</Button>
+        <Button name="Browse Courses" className="mt-16"></Button>
       </section>
     </div>
   );

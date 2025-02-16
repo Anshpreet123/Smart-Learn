@@ -1,8 +1,19 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import axios from 'axios';
+import { useNavigate } from 'react-router-dom';
+import { useLocation } from 'react-router-dom';
 
 export default function AuthPage() {
-  const [isLogin, setIsLogin] = useState(false);
+  const navigate = useNavigate();
+  const location = useLocation(); // true or false
+
+  useEffect(() => {
+    setIsLogin(!isLogin);
+  }, [location?.state?.tf]);
+  const [isLogin, setIsLogin] = useState(
+    !(location?.state?.tf ? location.state.tf : false) || false,
+  );
+
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [fullName, setFullName] = useState('');
@@ -23,8 +34,16 @@ export default function AuthPage() {
           `${base}/api/v1/users/login`,
           loginData,
         );
-        console.log('Login successful:', response.data);
+        console.log('Login successful:', response.data.accessToken);
         // You can handle further actions here like storing token, redirecting, etc.
+        // store the token in cookies or local storage
+        localStorage.setItem('token', response.data.accessToken);
+        console.log(
+          'Token stored in local storage:',
+          response.data.accessToken,
+        );
+        navigate('/profile');
+        // useNavigate('/dashboard');
       } catch (error) {
         console.error('Error logging in:', error);
       }
@@ -44,6 +63,8 @@ export default function AuthPage() {
           signUpData,
         );
         console.log('User registered successfully:', response.data);
+        // useNavigate('/login');
+        navigate('/profile');
         // You can handle further actions like redirecting to login or showing success message
       } catch (error) {
         console.error('Error registering user:', error);
