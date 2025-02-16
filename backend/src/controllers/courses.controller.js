@@ -21,7 +21,19 @@ const createCourse = async (req, res) => {
   }
 };
 
+const getCourseContent = async (req, res) => {
+  try {
+    // in this it will contain the course contents like what are the topics covered in the course
+    // so i have to selectively get the course content
+    const course = await Course.findById(req.params.id);
+    res.status(200).json(course);
+  } catch (error) {
+    res.status(404).json({ message: error.message });
+  }
+};
+
 module.exports = {
   getCourses,
   createCourse,
+  getCourseContent,
 };

@@ -64,7 +64,7 @@ export default function AuthPage() {
         );
         console.log('User registered successfully:', response.data);
         // useNavigate('/login');
-        navigate('/profile');
+        navigate('/login');
         // You can handle further actions like redirecting to login or showing success message
       } catch (error) {
         console.error('Error registering user:', error);
