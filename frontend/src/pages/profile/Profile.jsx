@@ -8,13 +8,13 @@ import {
   FaMapMarkerAlt,
   FaEnvelope,
   FaPhone,
+  FaFacebook,
   FaTimes,
 } from 'react-icons/fa';
 
 const Profile = () => {
   const base = 'http://localhost:5000';
   const [profile, setProfile] = useState({
-    name: '',
     age: '',
     email: '',
     phone: '',
@@ -23,6 +23,12 @@ const Profile = () => {
     bio: '',
     coursesPurchased: [],
     image: '',
+    socialLinks: {
+      facebook: '',
+      twitter: '',
+      linkedin: '',
+      github: '',
+    },
   });
   const [isEditing, setIsEditing] = useState(false);
   const [editedProfile, setEditedProfile] = useState({});
@@ -100,6 +106,17 @@ const Profile = () => {
     setEditedProfile((prev) => ({
       ...prev,
       [name]: value,
+    }));
+  };
+
+  const handleSocialLinkChange = (e) => {
+    const { name, value } = e.target;
+    setEditedProfile((prev) => ({
+      ...prev,
+      socialLinks: {
+        ...prev.socialLinks,
+        [name]: value,
+      },
     }));
   };
 
@@ -184,17 +201,19 @@ const Profile = () => {
             <div className="text-center mb-8">
               {isEditing ? (
                 <div className="space-y-4">
-                  <input
+                  {/* <input
                     type="text"
                     name="name"
                     value={editedProfile.name}
+                    placeholder="Name"
                     onChange={handleInputChange}
                     className="text-2xl font-bold text-center border-b-2 border-gray-300 focus:border-blue-500 outline-none"
-                  />
+                  /> */}
                   <input
                     type="text"
                     name="age"
                     value={editedProfile.age}
+                    placeholder="Age"
                     onChange={handleInputChange}
                     className="text-gray-600 text-center border-b-2 border-gray-300 focus:border-blue-500 outline-none"
                   />
@@ -202,7 +221,7 @@ const Profile = () => {
               ) : (
                 <div className="text-center mb-8">
                   <h1 className="text-3xl font-bold text-gray-800 mb-2">
-                    {profile.name}
+                    {profile.firstName} {profile.lastName}
                   </h1>
                   <p className="text-gray-600">Age: {profile.age}</p>
                 </div>
@@ -222,6 +241,7 @@ const Profile = () => {
                         name="email"
                         value={editedProfile.email}
                         onChange={handleInputChange}
+                        placeholder="Email"
                         className="w-full p-2 border rounded focus:border-blue-500 outline-none"
                       />
                       <input
@@ -229,6 +249,7 @@ const Profile = () => {
                         name="phone"
                         value={editedProfile.phone}
                         onChange={handleInputChange}
+                        placeholder="Phone"
                         className="w-full p-2 border rounded focus:border-blue-500 outline-none"
                       />
                       <input
@@ -236,6 +257,7 @@ const Profile = () => {
                         name="location"
                         value={editedProfile.location}
                         onChange={handleInputChange}
+                        placeholder="Location"
                         className="w-full p-2 border rounded focus:border-blue-500 outline-none"
                       />
                     </div>
@@ -326,33 +348,89 @@ const Profile = () => {
             </div>
 
             <div className="mt-8 pt-8 border-t border-gray-200">
-              <div className="flex justify-center space-x-4">
-                <a
-                  href="#"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="text-gray-400 hover:text-gray-600 transition-colors duration-200"
-                >
-                  <FaGithub className="w-6 h-6" />
-                </a>
-                <a
-                  href="#"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="text-gray-400 hover:text-gray-600 transition-colors duration-200"
-                >
-                  <FaLinkedin className="w-6 h-6" />
-                </a>
-                <a
-                  href="#"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="text-gray-400 hover:text-gray-600 transition-colors duration-200"
-                >
-                  <FaTwitter className="w-6 h-6" />
-                </a>
+              <div className="flex justify-center space-x-4 flex-wrap">
+                {isEditing ? (
+                  <textarea
+                    name="github"
+                    value={editedProfile.socialLinks.github}
+                    onChange={handleSocialLinkChange}
+                    className="w-full p-2 border rounded focus:border-blue-500 outline-none"
+                    placeholder="Github"
+                    rows="1"
+                  />
+                ) : (
+                  <a
+                    href={profile.socialLinks.github}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-gray-400 hover:text-gray-600 transition-colors duration-200"
+                  >
+                    <FaGithub className="w-6 h-6" />
+                  </a>
+                )}
+                {isEditing ? (
+                  <textarea
+                    name="linkedin"
+                    value={editedProfile.socialLinks.linkedin}
+                    onChange={handleSocialLinkChange}
+                    className="w-full p-2 border rounded focus:border-blue-500 outline-none"
+                    placeholder="Linkedin"
+                    rows="1"
+                  />
+                ) : (
+                  <a
+                    href={profile.socialLinks.linkedin}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-gray-400 hover:text-gray-600 transition-colors duration-200"
+                  >
+                    <FaLinkedin className="w-6 h-6" />
+                  </a>
+                )}
+
+                {isEditing ? (
+                  <textarea
+                    name="twitter"
+                    value={editedProfile.socialLinks.twitter}
+                    onChange={handleSocialLinkChange}
+                    className="w-full p-2 border rounded focus:border-blue-500 outline-none"
+                    placeholder="Twitter"
+                    rows="1"
+                  />
+                ) : (
+                  <a
+                    href={profile.socialLinks.twitter}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-gray-400 hover:text-gray-600 transition-colors duration-200"
+                  >
+                    <FaTwitter className="w-6 h-6" />
+                  </a>
+                )}
+
+                {isEditing ? (
+                  <textarea
+                    name="facebook"
+                    value={editedProfile.socialLinks.facebook}
+                    onChange={handleSocialLinkChange}
+                    className="w-full p-2 border rounded focus:border-blue-500 outline-none"
+                    placeholder="Facebook"
+                    rows="1"
+                  />
+                ) : (
+                  <a
+                    href={profile.socialLinks.facebook}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-gray-400 hover:text-gray-600 transition-colors duration-200"
+                  >
+                    <FaFacebook className="w-6 h-6" />
+                  </a>
+                )}
               </div>
             </div>
+
+            {/* check */}
           </div>
         </div>
       </div>

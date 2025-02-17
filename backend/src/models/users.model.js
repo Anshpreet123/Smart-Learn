@@ -20,6 +20,12 @@ const UserSchema = new mongoose.Schema(
         category: { type: String },
       },
     ],
+    socialLinks: {
+      facebook: { type: String },
+      twitter: { type: String },
+      linkedin: { type: String },
+      github: { type: String },
+    },
     interests: [{ type: String }],
   },
   { timestamps: true },

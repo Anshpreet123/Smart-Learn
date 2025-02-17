@@ -15,10 +15,12 @@ import { useParams } from 'react-router-dom';
 
 const Course = () => {
   const navigate = useNavigate();
+
   const handleBuy = () => {
-    navigate('/checkout');
+    navigate('/course/checkout');
     console.log('Buy this course');
   };
+
   const base = 'http://localhost:5000';
   const { courseId } = useParams();
   console.log(courseId);
