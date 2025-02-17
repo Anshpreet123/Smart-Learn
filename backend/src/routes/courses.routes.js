@@ -5,5 +5,6 @@ const router = Router();
 
 router.get('/', coursesController.getCourses);
 router.post('/create', authMiddleware, coursesController.createCourse);
+router.get('/:id', coursesController.getCourseById);
 
 module.exports = router;

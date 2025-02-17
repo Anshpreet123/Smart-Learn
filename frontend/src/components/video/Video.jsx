@@ -1,9 +1,11 @@
 import React from 'react';
 
-const Video = () => {
+const Video = (props) => {
+  const videoSrc = props.src;
+
   return (
     <video className="w-full h-auto max-w-full" controls>
-      <source src="../../../public/flowbit.mp4" type="video/mp4" />
+      <source src={videoSrc} type="video/mp4" />
       Your browser does not support the video tag.
     </video>
   );
