@@ -1,7 +1,12 @@
 import React from 'react';
 import Button from '../button/Button';
+import { useNavigate } from 'react-router-dom';
 
 const HeroSection = () => {
+  const navigate = useNavigate();
+  const browseCourses = () => {
+    navigate('/course');
+  };
   return (
     <div className="mt-20">
       <section className="bg-orange-100 text-center py-20 px-6">
@@ -11,7 +16,11 @@ const HeroSection = () => {
         <p className="text-lg md:text-xl text-orange-700 mt-4 mb-6">
           Learn from industry experts and grow your skills.
         </p>
-        <Button name="Browse Courses" className="mt-16"></Button>
+        <Button
+          onClick={browseCourses}
+          name="Browse Courses"
+          className="mt-16"
+        ></Button>
       </section>
     </div>
   );

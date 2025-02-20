@@ -62,7 +62,7 @@ const Playlist = () => {
   const [expanded, setExpanded] = useState(null);
 
   return (
-    <div className="w-full p-4 bg-orange-200 text-white rounded-lg shadow-lg max-h-96 overflow-y-auto no-scrollbar">
+    <div className="w-full p-4 bg-orange-200 text-white rounded-lg shadow-lg h-auto max-h-96 overflow-y-auto no-scrollbar">
       <h2 className="text-lg text-red-500 font-semibold mb-2">Playlist</h2>
       <ul className="space-y-3">
         {videos.map((video, index) => (
@@ -87,6 +87,9 @@ const Playlist = () => {
           </li>
         ))}
       </ul>
+
+      {/* {if width of screen decrease then take playlist to bottom
+      } */}
     </div>
   );
 };

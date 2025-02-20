@@ -35,6 +35,10 @@ const Profile = () => {
   const [error, setError] = useState('');
   const [isLoading, setIsLoading] = useState(true);
 
+  useEffect(() => {
+    getProfile();
+  }, []);
+
   const getProfile = async () => {
     setIsLoading(true);
     setError('');
@@ -53,6 +57,7 @@ const Profile = () => {
       const profileData = response.data;
       setProfile(profileData);
       setEditedProfile(profileData);
+      console.log('Profile:', profileData);
     } catch (error) {
       const errorMessage =
         error.response?.data?.message ||
@@ -352,7 +357,7 @@ const Profile = () => {
                 {isEditing ? (
                   <textarea
                     name="github"
-                    value={editedProfile.socialLinks.github}
+                    value={editedProfile.socialLinks.github || ''}
                     onChange={handleSocialLinkChange}
                     className="w-full p-2 border rounded focus:border-blue-500 outline-none"
                     placeholder="Github"
@@ -360,10 +365,11 @@ const Profile = () => {
                   />
                 ) : (
                   <a
-                    href={profile.socialLinks.github}
+                    href={profile.socialLinks.github || ''}
                     target="_blank"
                     rel="noopener noreferrer"
                     className="text-gray-400 hover:text-gray-600 transition-colors duration-200"
+                    alt="github"
                   >
                     <FaGithub className="w-6 h-6" />
                   </a>

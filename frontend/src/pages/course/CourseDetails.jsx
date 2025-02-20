@@ -1,5 +1,6 @@
 import React from 'react';
 import Video from '../../components/video/Video';
+import Playlist from '../../components/playlist/Playlist';
 
 const CourseDetails = () => {
   return (
@@ -20,7 +21,7 @@ const CourseDetails = () => {
           Your browser does not support the video tag.
         </video> */}
           {/* Here video playlist section is there  */}
-          <Playlist />
+          {/* <Playlist /> */}
         </div>
       </div>
     </div>

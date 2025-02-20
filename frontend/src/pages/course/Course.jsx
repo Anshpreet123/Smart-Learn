@@ -8,6 +8,7 @@ import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
+import { Outlet } from 'react-router-dom';
 
 // This page will contain the introduction video
 // course content and About the instructor
@@ -15,15 +16,15 @@ import { useParams } from 'react-router-dom';
 
 const Course = () => {
   const navigate = useNavigate();
+  const { courseId } = useParams();
+  console.log(courseId);
 
   const handleBuy = () => {
-    navigate('/course/checkout');
+    navigate(`/course/${courseId}/checkout`);
     console.log('Buy this course');
   };
 
   const base = 'http://localhost:5000';
-  const { courseId } = useParams();
-  console.log(courseId);
 
   const [data, setData] = useState([]);
   const fetchData = async () => {
@@ -47,10 +48,20 @@ const Course = () => {
 
   return (
     <div className="mt-20">
-      <h2 className="text-2xl text-left font-bold text-gray-900 mb-5">
-        Introduction
-      </h2>
-      <Video src={src} />
+      <div className="flex justify-between">
+        <h2 className="text-2xl inline text-left font-bold text-gray-900 mb-5">
+          Introduction
+        </h2>
+        <Button
+          className=""
+          name="Start Course"
+          onClick={() => navigate(`/learn/${courseId}`)}
+        />
+      </div>
+      <div className="flex mt-5">
+        <Video width={''} height={'h-4/6'} src={src} />
+      </div>
+
       <div className="flex justify-start mt-10">
         <Button name="Buy This course" onClick={handleBuy}></Button>
       </div>
@@ -58,8 +69,11 @@ const Course = () => {
       <h2 className="text-2xl text-left font-bold text-gray-900 mb-5">
         Course Content
       </h2>
-      <CourseContent weekContent={data.weeklyContent || []} />
-      <CourseDescription description={data.description} />
+      <CourseContent
+        className="w-full"
+        weekContent={data.weeklyContent || []}
+      />
+      {/* <Outlet /> */}
     </div>
   );
 };
